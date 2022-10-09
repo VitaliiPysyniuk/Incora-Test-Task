@@ -19,7 +19,7 @@ class CustomUserModel(AbstractBaseUser):
     ])
     phone = models.CharField(max_length=60, unique=True, validators=[
         RegexValidator(regex=r'^\+?(38)?\(?0[1-9]{2}\)?[0-9]{2}-?[0-9]{3}-?[0-9]{2}$',
-                       message='Incorrect phone number format.')
+                       message='Invalid phone number format.')
     ])
 
     last_login = None
