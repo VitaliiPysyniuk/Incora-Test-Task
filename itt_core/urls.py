@@ -18,6 +18,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('users', include('apps.users.urls')),
-    path('login', TokenObtainPairView.as_view(), name='login_user'),
-    path('refresh', TokenRefreshView.as_view(), name='refresh_access_token')
+    path('login', TokenObtainPairView.as_view(), name='get_token_pair'),
+    path('refresh', TokenRefreshView.as_view(), name='refresh_token_pair')
 ]

@@ -13,13 +13,11 @@ class UserListCreateView(ListCreateAPIView):
     queryset = UserModel.objects.order_by('id')
     serializer_class = UserSerializer
 
-    def get(self, request, *args, **kwargs):
-        self.permission_classes = [IsAuthenticated]
-        return super().get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        self.permission_classes = [AllowAny]
-        return super().post(request, *args, **kwargs)
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return [IsAuthenticated()]
+        elif self.request.method == 'POST':
+            return [AllowAny()]
 
 
 class UserRetrieveUpdateView(RetrieveAPIView):
