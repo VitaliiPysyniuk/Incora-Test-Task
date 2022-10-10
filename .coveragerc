@@ -1,0 +1,14 @@
+[run]
+omit =
+    */tests/*
+    */migrations/*
+    */__init__.py
+    */apps.py
+    manage.py
+    itt_core/*
+
+
+[report]
+fail_under = 100
+show_missing = True
+precision = 2
