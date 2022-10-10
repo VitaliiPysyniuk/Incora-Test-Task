@@ -2,6 +2,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 from django.contrib.auth import get_user_model
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from .serializers import UserSerializer
 
@@ -12,14 +13,20 @@ class UserListCreateView(ListCreateAPIView):
     queryset = UserModel.objects.order_by('id')
     serializer_class = UserSerializer
 
+    def get(self, request, *args, **kwargs):
+        self.permission_classes = [IsAuthenticated]
+        return super().get(request, *args, **kwargs)
+
     def post(self, request, *args, **kwargs):
+        self.permission_classes = [AllowAny]
         return super().post(request, *args, **kwargs)
 
 
-class UserUpdateView(RetrieveAPIView):
+class UserRetrieveUpdateView(RetrieveAPIView):
     queryset = UserModel.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'id'
+    permission_classes = [IsAuthenticated]
 
     def put(self, request, *args, **kwargs):
         instance = self.get_object()
