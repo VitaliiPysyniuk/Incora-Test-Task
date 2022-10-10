@@ -10,7 +10,9 @@ https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
+from socketio import WSGIApp, Server
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'incora_test_task.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'itt_core.settings')
 
-application = get_wsgi_application()
+sio = Server()
+application = WSGIApp(sio, get_wsgi_application())
