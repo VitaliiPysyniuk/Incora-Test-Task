@@ -12,10 +12,10 @@ class CustomUserModel(AbstractBaseUser):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
     first_name = models.CharField(max_length=60, validators=[
-        RegexValidator(regex=r'^[A-Za-z]*$', message='The first name can contain only letters.')
+        RegexValidator(regex=r'^[A-Za-z]*$', message='The first name can contain only latin letters.')
     ])
     last_name = models.CharField(max_length=60, blank=True, validators=[
-        RegexValidator(regex=r'^[A-Za-z]*$', message='The last name can contain only letters.')
+        RegexValidator(regex=r'^[A-Za-z]*$', message='The last name can contain only latin letters.')
     ])
     phone = models.CharField(max_length=60, unique=True, validators=[
         RegexValidator(regex=r'^\+?(38)?\(?0[1-9]{2}\)?[0-9]{2}-?[0-9]{3}-?[0-9]{2}$',
